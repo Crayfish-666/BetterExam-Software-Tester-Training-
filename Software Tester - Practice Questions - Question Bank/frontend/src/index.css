@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-slate-900 text-slate-100 antialiased;
+  }
+}
+
+.glass {
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Table Styles for Exam Content */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  border: 1px solid rgba(148, 163, 184, 0.3); /* slate-400/30 */
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.prose table th,
+.prose table td {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.prose table th {
+  background-color: rgba(30, 41, 59, 0.8); /* slate-800 */
+  color: #f8fafc; /* slate-50 */
+  font-weight: 700;
+}
+
+.prose table tr:nth-child(even) {
+  background-color: rgba(30, 41, 59, 0.4);
+}
+
+.prose table tr:hover {
+  background-color: rgba(51, 65, 85, 0.5); /* slate-700/50 */
+}
+
+/* Custom Scrollbar for split panes */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2); 
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.8); 
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 1); 
+}
