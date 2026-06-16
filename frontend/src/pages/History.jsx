@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { History, TrendingUp, Calendar, CheckCircle2 } from 'lucide-react';
 
 export default function StudyHistory() {
@@ -7,8 +7,8 @@ export default function StudyHistory() {
 
   useEffect(() => {
     Promise.all([
-        fetch('http://localhost:3001/api/history').then(res => res.json()),
-        fetch('http://localhost:3001/api/papers').then(res => res.json())
+        fetch('http://10.250.196.253:3001/api/history').then(res => res.json()),
+        fetch('http://10.250.196.253:3001/api/papers').then(res => res.json())
     ]).then(([hData, pData]) => {
         setHistory(hData);
         

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Loader2, Star, Eye, EyeOff, ChevronLeft, ArrowUpToLine, ArrowDownToLine, FileText, LayoutList, LayoutTemplate, ArrowRight } from 'lucide-react';
 
@@ -18,8 +18,8 @@ export default function Browse() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`http://localhost:3001/api/questions?paper_id=${paperId}`).then(res => res.json()),
-      fetch(`http://localhost:3001/api/favorites`).then(res => res.json())
+      fetch(`http://10.250.196.253:3001/api/questions?paper_id=${paperId}`).then(res => res.json()),
+      fetch(`http://10.250.196.253:3001/api/favorites`).then(res => res.json())
     ]).then(([qData, fData]) => {
       setQuestions(qData);
       setLoading(false);
@@ -56,10 +56,10 @@ export default function Browse() {
   const toggleFavorite = (qId) => {
       const isFav = favorites.has(qId);
       if (isFav) {
-          fetch(`http://localhost:3001/api/favorite/${qId}`, { method: 'DELETE' })
+          fetch(`http://10.250.196.253:3001/api/favorite/${qId}`, { method: 'DELETE' })
             .then(() => setFavorites(prev => { const next = new Set(prev); next.delete(qId); return next; }));
       } else {
-          fetch(`http://localhost:3001/api/favorite`, {
+          fetch(`http://10.250.196.253:3001/api/favorite`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ question_id: qId, paper_id: paperId })

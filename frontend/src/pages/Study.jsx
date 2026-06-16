@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Check, X, ArrowRight, ArrowLeft, Loader2, Trophy, Star, LayoutList, LayoutTemplate, Send, ArrowDownToLine, ArrowUpToLine, FastForward, FileText, ChevronLeft, UploadCloud } from 'lucide-react';
 
@@ -20,8 +20,8 @@ export default function Study() {
 
   useEffect(() => {
     Promise.all([
-        fetch(`http://localhost:3001/api/questions?paper_id=${paperId}`).then(res => res.json()),
-        fetch(`http://localhost:3001/api/favorites`).then(res => res.json())
+        fetch(`http://10.250.196.253:3001/api/questions?paper_id=${paperId}`).then(res => res.json()),
+        fetch(`http://10.250.196.253:3001/api/favorites`).then(res => res.json())
     ]).then(([qData, fData]) => {
         setQuestions(qData);
         setLoading(false);
@@ -39,10 +39,10 @@ export default function Study() {
   const toggleFavorite = (qId) => {
       const isFav = favorites.has(qId);
       if (isFav) {
-          fetch(`http://localhost:3001/api/favorite/${qId}`, { method: 'DELETE' })
+          fetch(`http://10.250.196.253:3001/api/favorite/${qId}`, { method: 'DELETE' })
             .then(() => setFavorites(prev => { const next = new Set(prev); next.delete(qId); return next; }));
       } else {
-          fetch(`http://localhost:3001/api/favorite`, {
+          fetch(`http://10.250.196.253:3001/api/favorite`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ question_id: qId, paper_id: paperId })
@@ -64,7 +64,7 @@ export default function Study() {
             if (userAnswer === q.correct_answer) {
                 currentScore += q.score || 0;
             } else if (userAnswer !== q.correct_answer) {
-                fetch('http://localhost:3001/api/mistake', {
+                fetch('http://10.250.196.253:3001/api/mistake', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ question_id: q.id, paper_id: paperId })
@@ -77,7 +77,7 @@ export default function Study() {
     setSubjectiveTotal(subjectiveScore);
     setShowResult(true);
 
-    fetch('http://localhost:3001/api/history', {
+    fetch('http://10.250.196.253:3001/api/history', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ paper_id: paperId, score: currentScore, total: questions.length })

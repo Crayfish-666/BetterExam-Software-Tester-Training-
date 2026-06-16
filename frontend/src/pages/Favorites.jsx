@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { Star, Clock } from 'lucide-react';
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/favorites')
+    fetch('http://10.250.196.253:3001/api/favorites')
       .then(res => res.json())
       .then(data => setFavorites(data));
   }, []);
 
   const removeFavorite = (qId) => {
-    fetch(`http://localhost:3001/api/favorite/${qId}`, { method: 'DELETE' })
+    fetch(`http://10.250.196.253:3001/api/favorite/${qId}`, { method: 'DELETE' })
       .then(() => {
         setFavorites(prev => prev.filter(f => f.question_id !== qId));
       });

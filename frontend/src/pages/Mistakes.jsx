@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { Trash2, AlertTriangle, BookOpen, Clock } from 'lucide-react';
 
 export default function Mistakes() {
   const [mistakes, setMistakes] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/mistakes')
+    fetch('http://10.250.196.253:3001/api/mistakes')
       .then(res => res.json())
       .then(data => setMistakes(data));
   }, []);
 
   const removeMistake = (qId) => {
-    fetch(`http://localhost:3001/api/mistake/${qId}`, { method: 'DELETE' })
+    fetch(`http://10.250.196.253:3001/api/mistake/${qId}`, { method: 'DELETE' })
       .then(() => {
         setMistakes(prev => prev.filter(m => m.question_id !== qId));
       });
